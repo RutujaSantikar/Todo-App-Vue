@@ -1,58 +1,71 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="body">
+    <div class="left-cont image-container">
+      <img v-bind:src="todoImage" />
+    </div>
+    <div class="right-cont text-container">
+      <h2>Have a plans for Today ?</h2>
+      <h5>List it Here</h5>
+
+      <div class="btn-cont">
+        <button class="createtodo" @click="isCard = !isCard">
+          Create todo
+        </button>
+      </div>
+
+      <todo-app v-show="!isCard"></todo-app>
+    </div>
   </div>
 </template>
 
 <script>
+import TodoApp from "./TodoApp.vue";
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+  components: {
+    TodoApp,
+  },
+  name: "HelloWorld",
+  data() {
+    return {
+      isCard: true,
+
+      todoImage: require("../assets/todo-logo.png"),
+    };
+  },
+  methods: {},
+};
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.body {
+  width: 85%;
+  margin: 2em auto;
+  display: flex;
+  justify-content: space-between;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.right-cont {
+  background-color: #fbcf02;
+  border-radius: 41% 59% 24% 76% / 71% 37% 63% 29%;
+  width: 44%;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+h2 {
+  letter-spacing: 0.1em;
+  color: #6666ff;
 }
-a {
-  color: #42b983;
+h5 {
+  letter-spacing: 0.1em;
+  color: #252468;
 }
+.createtodo {
+  border: none;
+  padding: 1em;
+  border-radius: 5em;
+  background-color: #d63384;
+  color: white;
+  float: right;
+  letter-spacing: 0.1em;
+  margin-top: 1em;
+}
+
+
 </style>
